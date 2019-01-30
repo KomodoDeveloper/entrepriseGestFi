@@ -1,0 +1,13 @@
+
+#summaryCompanyGrid {
+  margin-top: 1%;
+}
+
+#summaryCompanyGrid .row {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#btnSummaryCompanyAddForm {
+  margin-top: 2%;
+}

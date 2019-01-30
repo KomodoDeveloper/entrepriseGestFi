@@ -8,5 +8,6 @@ urlpatterns = [
     path('addCompany', views.addCompany, name='addCompany'),
     path('editCompany/<int:id>', views.editCompany, name='editCompany'),
     path('deleteCompany/<int:id>', views.deleteCompany, name='deleteCompany'),
+    path('summaryCompany/<int:id>', views.summaryCompany, name='summaryCompany'),
     path('', views.homeRedirection, name='homeRedirection'),
 ]

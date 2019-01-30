@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} summary company {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/summaryCompany.css' %}">
+{% endblock %}
+
+{% block mainTitle %} {{ company.name }}{% endblock %}
+
+{% block content %}
+
+<div class="ui middle aligned grid" id="summaryCompanyGrid">
+  <div class="center aligned row">
+    <div class="five wide column">
+      <div class="ui teal inverted segment">
+        <b>Adresse</b>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="ui teal inverted segment">
+        <b>Pays</b>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="ui teal inverted segment">
+        <b>Contact</b>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      <div class="ui teal segment">
+        <b>{{ company.address }}</b>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="ui teal segment">
+        <b>{{ company.country }}</b>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="ui teal segment">
+        <b>{{ company.contact }}</b>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="ui blue medium button" id="btnSummaryCompanyAddForm" onclick="#">
+  Ajouter un formulaire
+</button>
+<h3 class="ui header">Liste des formulaires</h3>
+
+{% endblock %}

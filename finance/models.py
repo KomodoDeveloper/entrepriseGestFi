@@ -16,3 +16,22 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+class Month(models.Model):
+    number = models.IntegerField(verbose_name="num", unique=True)
+    month = models.CharField(max_length=20, verbose_name="mois", unique=True)
+
+    class Meta:
+        verbose_name = "Month"
+
+    def __str__(self):
+        return self.month
+
+class Year(models.Model):
+    year = models.IntegerField(verbose_name="année", unique=True)
+
+    class Meta:
+        verbose_name = "Year"
+
+    def __str__(self):
+        return str(self.year)

@@ -40,3 +40,7 @@ def deleteCompany(request,id):
     company = get_object_or_404(Company, id=id)
     company.delete()
     return redirect('listCompany')
+
+def summaryCompany(request,id):
+    company = get_object_or_404(Company, id=id)
+    return render(request, 'finance/summaryCompany.html', locals())
