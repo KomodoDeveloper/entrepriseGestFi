@@ -1,0 +1,11 @@
+li {
+  text-align: left;
+}
+
+body > .grid {
+ height: 100%;
+}
+
+.column {
+  max-width: 500px;
+}

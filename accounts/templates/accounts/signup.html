@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Signup {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block header%}
+
+{% endblock %}
+
+{% block mainTitle %} Signup {% endblock %}
+
+{% block accessToContent %}
+
+  {% block content %}
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui large form" method="post">
+        {% csrf_token %}
+        <div class="ui stacked segment">
+          <div class="field">
+            <label>{{ form.username.label_tag }}</label>
+            <div class="ui info message">
+              <p>{{ form.username.help_text }}</p>
+              {{ form.username.errors }}
+            </div>
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              {{ form.username }}
+            </div>
+          </div>
+          <div class="field">
+            <label>{{ form.email.label_tag }}</label>
+            <div class="ui info message">
+              <p>{{ form.email.help_text }}</p>
+            </div>
+            <div class="ui left icon input">
+              <i class="at icon"></i>
+              {{ form.email }}
+            </div>
+          </div>
+          <div class="field">
+            <label>{{ form.password1.label_tag }}</label>
+            <div class="ui info message">
+              <ul class="list">
+                <li>Votre mot de passe ne peut pas trop ressembler à vos autres informations personnelles.</li>
+                <li>Votre mot de passe doit contenir au minimum 8 caractères.</li>
+                <li>Votre mot de passe ne peut pas être un mot de passe couramment utilisé.</li>
+                <li>Votre mot de passe ne peut pas être entièrement numérique</li>
+              </ul>
+              {{ form.password1.errors }}
+            </div>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{ form.password1 }}
+            </div>
+          </div>
+          <div class="field">
+            <label>{{ form.password2.label_tag }}</label>
+            <div class="ui info message">
+              <p id="test">{{ form.password2.help_text }}</p>
+              {{ form.password2.errors }}
+            </div>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{ form.password2 }}
+            </div>
+          </div>
+          <button type="submit" class="ui fluid blue button">Enregistrer</button>
+        </div>
+      </form>
+        {{ form.non_field_errors }}
+    </div>
+  </div>
+
+  {% endblock %}
+
+{% endblock %}

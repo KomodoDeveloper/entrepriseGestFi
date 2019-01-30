@@ -1,0 +1,27 @@
+.headerspan {
+  font-size: 110%;
+  margin-left: 3%;
+}
+
+#Body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#Body-content {
+  flex: 1;
+  margin-bottom: 0.3%;
+}
+
+#About {
+    color:white;
+}
+
+#h2BodyContent {
+  margin-top: 2%;
+}
+
+#baseFooter {
+  margin-top: 1%;
+}

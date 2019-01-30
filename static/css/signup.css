@@ -1,0 +1,16 @@
+li {
+  text-align: left;
+}
+
+.column {
+ max-width: 650px;
+}
+
+.message{
+  text-align: left;
+}
+
+.errorlist li {
+  color: red;
+  text-align: left;
+}

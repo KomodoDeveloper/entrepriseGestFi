@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} addCompany {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/addCompany.css' %}">
+{% endblock %}
+
+{% block mainTitle %} Ajouter une société addCompany{% endblock %}
+
+{% block content %}
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui form" id="formAddCompany" action="{% url "addCompany" %}" method="post">
+        {% csrf_token %}
+        <div class="ui segment">
+          <div class="ui info message">
+            <p>Le nom de la société</p>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.name.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.name }}
+            </div>
+          </div>
+          <div class="ui info message">
+            <p>L' adresse de la société</p>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.address.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.address }}
+            </div>
+          </div>
+          <div class="ui info message">
+            <p>Le pays de la société</p>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.country.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.country }}
+            </div>
+          </div>
+          <div class="ui info message">
+            <p>Personne de contact dans la société</p>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.contact.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.contact }}
+            </div>
+          </div>
+          <button type="submit" class="ui fluid blue button">Enregistrer</button>
+        </div>
+      </form>
+      <div class="ui warning message">
+        <ul>
+          <li>Respectez les règles en bleu pour chaque champs</li>
+        </ul>
+        {{ form.non_field_errors }}
+      </div>
+      {% if validEntry %}
+        <div class="ui positive message">Nouvelle société ajoutée
+          <button class="ui green tiny button" id="btnAddCompanyBacktoHome" onclick="location.href='{% url "home" %}';">
+            Retour
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascript_jq %}
+
+{% endblock %}

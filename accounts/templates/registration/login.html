@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} login {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block header%}
+
+{% endblock %}
+
+{% block mainTitle %} Login {% endblock %}
+
+{% block accessToContent %}
+
+  {% block content %}
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui large form" method="post">
+        {% csrf_token %}
+        <div class="ui stacked segment">
+          <div class="field">
+            <label>{{ form.username.label_tag }}</label>
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              {{ form.username }}
+            </div>
+          </div>
+          <div class="field">
+            <label>{{ form.password.label_tag }}</label>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{ form.password }}
+            </div>
+          </div>
+          <button type="submit" class="ui fluid blue button">Connexion</button>
+        </div>
+      </form>
+
+      <div class="ui warning message" id="errorMessage">
+        <ul>
+          <li>Rappel: le mot de passe doit contenir au minimum 8 caractères.</li>
+          <li>Rappel: le mot de passe ne peut pas être entièrement numérique.</li>
+        </ul>
+        {{ form.non_field_errors }}
+      </div>
+      <div class="ui message">
+        Nouveau ?  <a href="{% url "signup" %}">Créer un compte</a>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} editCompany {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/editCompany.css' %}">
+{% endblock %}
+
+{% block mainTitle %} Modifier une société {% endblock %}
+
+{% block content %}
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        <div class="ui segment">
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.name.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.name }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.address.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.address }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.country.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.country }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              {{ form.contact.label_tag }}
+            </div>
+            <div class="thirteen wide field">
+              {{ form.contact }}
+            </div>
+          </div>
+          <button type="submit" class="ui fluid blue button">Enregistrer modification(s)</button>
+        </div>
+     </form>
+     <div class="ui warning message">
+       <ul>
+         <li>Vous serez directement redirigé à la liste des sociétés</li>
+       </ul>
+       {{ form.non_field_errors }}
+       {{ form.name.errors }}
+       {{ form.address.errors }}
+       {{ form.country.errors }}
+       {{ form.contact.errors }}
+     </div>
+    </div>
+  </div>
+
+{% endblock %}

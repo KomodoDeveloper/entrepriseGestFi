@@ -1,0 +1,15 @@
+li {
+  text-align: left;
+}
+
+.message{
+  text-align: center;
+}
+
+.column {
+ max-width: 550px;
+}
+
+#btnAddCompanyBacktoHome {
+  margin-left: 1%;
+}
