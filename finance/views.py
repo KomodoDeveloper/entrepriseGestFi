@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.utils import timezone
 from django.contrib.auth.models import User
-from .forms import CompanyForm
-from .models import Company
+from .forms import CompanyForm, FormuComptaForm
+from .models import Company, FormuCompta
 import os, time, datetime
 
 # Create your views here.
@@ -43,4 +43,30 @@ def deleteCompany(request,id):
 
 def summaryCompany(request,id):
     company = get_object_or_404(Company, id=id)
+    formuComptaForCompany = FormuCompta.objects.filter(company__id=company.id)
     return render(request, 'finance/summaryCompany.html', locals())
+
+def addFormuCompta(request,id):
+    company = get_object_or_404(Company, id=id)
+    form = FormuComptaForm(request.POST or None)
+    if form.is_valid():
+        formTemp = form.save(commit=False)
+        formucompta = FormuCompta(company = Company.objects.get(id=company.id), month = formTemp.month, year = formTemp.year, ca = formTemp.ca, frais_achat = formTemp.frais_achat, charges_sociales = formTemp.charges_sociales, fg = formTemp.fg, autres_frais = formTemp.autres_frais, ebitda = formTemp.ebitda, credits_ct = formTemp.credits_ct, credits_lt = formTemp.credits_lt, cashflow = formTemp.cashflow, investissements = formTemp.investissements)
+        formucompta.save()
+        return redirect('summaryCompany', id=company.id)
+    return render(request, 'finance/addFormuCompta.html', locals())
+
+def deleteFormuCompta(request,id,id2):
+    formucompta = get_object_or_404(FormuCompta, id=id)
+    company = get_object_or_404(Company, id=id2)
+    formucompta.delete()
+    return redirect('summaryCompany', id=company.id)
+
+def editFormuCompta(request,id, id2):
+    formucompta = get_object_or_404(FormuCompta, id=id)
+    company = get_object_or_404(Company, id=id2)
+    form = FormuComptaForm(request.POST or None, instance=formucompta)
+    if form.is_valid():
+        form.save()
+        return redirect('summaryCompany', id=company.id)
+    return render(request, 'finance/editFormuCompta.html', {'form':form})

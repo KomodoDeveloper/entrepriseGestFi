@@ -11,45 +11,75 @@
 
 {% block content %}
 
-<div class="ui middle aligned grid" id="summaryCompanyGrid">
-  <div class="center aligned row">
-    <div class="five wide column">
-      <div class="ui teal inverted segment">
-        <b>Adresse</b>
+  <div class="ui middle aligned grid" id="summaryCompanyGrid">
+    <div class="center aligned row">
+      <div class="five wide column">
+        <div class="ui teal inverted segment">
+          <b>Adresse</b>
+        </div>
+      </div>
+      <div class="five wide column">
+        <div class="ui teal inverted segment">
+          <b>Pays</b>
+        </div>
+      </div>
+      <div class="five wide column">
+        <div class="ui teal inverted segment">
+          <b>Contact</b>
+        </div>
       </div>
     </div>
-    <div class="five wide column">
-      <div class="ui teal inverted segment">
-        <b>Pays</b>
+    <div class="row">
+      <div class="five wide column">
+        <div class="ui teal segment">
+          <b>{{ company.address }}</b>
+        </div>
       </div>
-    </div>
-    <div class="five wide column">
-      <div class="ui teal inverted segment">
-        <b>Contact</b>
+      <div class="five wide column">
+        <div class="ui teal segment">
+          <b>{{ company.country }}</b>
+        </div>
+      </div>
+      <div class="five wide column">
+        <div class="ui teal segment">
+          <b>{{ company.contact }}</b>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="five wide column">
-      <div class="ui teal segment">
-        <b>{{ company.address }}</b>
+  {% if user.is_staff %}
+  <button class="ui blue medium button" id="btnSummaryCompanyAddForm" onclick="location.href='{% url "addFormuCompta" company.id %}';">
+    Ajouter un formulaire
+  </button>
+  {% endif %}
+  <h3 class="ui header" id="summaryCompanyh3">Liste des formulaires</h3>
+
+  <div class="ui grid" id="summaryCompanyGrid2">
+    {% for formu in formuComptaForCompany %}
+      <div class="ui raised segment" id="summaryCompanyRaisedSegement">
+        <div class="column">
+          <div class="ui tiny blue header">{{ formu.year }} &nbsp; {{ formu.month }}</div>
+          <div class="ui tiny header" title="Chiffre d'affaire">CA : {{ formu.ca }} CHF</div>
+          <div class="ui tiny header" title="Frais d'achat">FA : {{ formu.frais_achat }} CHF</div>
+          <div class="ui tiny header" title="Charges sociales">CSo : {{ formu.charges_sociales }} CHF</div>
+          <div class="ui tiny header" title="Frais généraux">FG : {{ formu.fg }} CHF</div>
+          <div class="ui tiny header" title="Autres frais">AF : {{ formu.autres_frais }} CHF</div>
+          <div class="ui tiny header" title="EBITDA">{{ formu.ebitda }} CHF</div>
+          <div class="ui tiny header" title="Crédits courts termes">CCT : {{ formu.credits_ct }} CHF</div>
+          <div class="ui tiny header" title="Crédit longs termes">CLT : {{ formu.credits_lt }} CHF</div>
+          <div class="ui tiny header" title="Cashflow">CF : {{ formu.cashflow }} CHF</div>
+          <div class="ui tiny header" title="Investissements">Inv : {{ formu.investissements }} CHF</div>
+          <button class="ui icon button" onclick="location.href='{% url "deleteFormuCompta" formu.id company.id %}';">
+            <i class="trash alternate icon"></i>
+          </button>
+          <button class="ui icon button" onclick="location.href='{% url "editFormuCompta" formu.id company.id %}';">
+            <i class=" edit icon"></i>
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="five wide column">
-      <div class="ui teal segment">
-        <b>{{ company.country }}</b>
-      </div>
-    </div>
-    <div class="five wide column">
-      <div class="ui teal segment">
-        <b>{{ company.contact }}</b>
-      </div>
-    </div>
+    {% empty %}
+      <h5 class="ui header">Aucun formulaire pour cette société</h5>
+    {% endfor %}
   </div>
-</div>
-<button class="ui blue medium button" id="btnSummaryCompanyAddForm" onclick="#">
-  Ajouter un formulaire
-</button>
-<h3 class="ui header">Liste des formulaires</h3>
 
 {% endblock %}

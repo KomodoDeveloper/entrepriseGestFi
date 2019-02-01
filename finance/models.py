@@ -17,6 +17,28 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+class FormuCompta(models.Model):
+    company = models.ForeignKey('Company', on_delete=models.CASCADE )
+    month = models.ForeignKey('Month', on_delete=models.CASCADE)
+    year = models.ForeignKey('Year', on_delete=models.CASCADE)
+    ca = models.FloatField(default=0.0, verbose_name="CA")
+    frais_achat = models.FloatField(default=0.0, verbose_name="Frais d'achat")
+    charges_sociales = models.FloatField(default=0.0, verbose_name="Charges sociales")
+    fg = models.FloatField(default=0.0, verbose_name="Frais généraux")
+    autres_frais = models.FloatField(default=0.0, verbose_name="Autres frais")
+    ebitda = models.FloatField(default=0.0, verbose_name="EBITDA")
+    credits_ct = models.FloatField(default=0.0, verbose_name="Crédits courts termes")
+    credits_lt = models.FloatField(default=0.0, verbose_name="Crédits long termes")
+    cashflow = models.FloatField(default=0.0, verbose_name="Cashflow")
+    investissements = models.FloatField(default=0.0, verbose_name="Investissements")
+
+    class Meta:
+        verbose_name = "FormuCompta"
+        ordering = ['-year', '-month']
+
+    def __str__(self):
+        return self.month.month + str(self.year)
+
 class Month(models.Model):
     number = models.IntegerField(verbose_name="num", unique=True)
     month = models.CharField(max_length=20, verbose_name="mois", unique=True)

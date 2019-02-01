@@ -11,3 +11,32 @@
 #btnSummaryCompanyAddForm {
   margin-top: 2%;
 }
+
+#summaryCompanyGrid2 .column {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#summaryCompanyGrid2 .segment {
+  margin-top:0.0rem;
+  margin-bottom:0.0rem;
+  margin-right:0.2rem;
+  margin-left:0.0rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+#summaryCompanyGrid2 .header {
+  font-size: 0.9em;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.0rem;
+  margin-bottom: 0.0rem;
+  border-bottom: 1px solid black;
+}
+
+#summaryCompanyh3 {
+  margin-bottom: 2rem;
+}

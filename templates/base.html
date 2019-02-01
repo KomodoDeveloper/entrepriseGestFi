@@ -8,7 +8,6 @@
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" async></script>
-     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
      {% block cssAddition %}{% endblock %}
   </head>
   <body id="Body">
@@ -85,7 +84,7 @@
         {% block footer %}
         <div class="ui stackable inverted divided grid">
           <div class="four wide column">
-            <img class="ui centered tiny image" src="{% static 'img/building_logo.png' %}" alt="logoBuilding png"/>
+            <img class="ui centered mini image" src="{% static 'img/building_logo.png' %}" alt="logoBuilding png"/>
           </div>
           <div class="four wide column">
             <h5 class="ui inverted header">Copyright&copy; 2019</h5>
@@ -101,6 +100,7 @@
         </div>
       </div>
     </footer>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {% block javascript_jq %}
     {% endblock %}
   </body>

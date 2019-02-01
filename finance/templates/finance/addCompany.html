@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} addCompany {% endblock %}
+{% block title %} ajouter société {% endblock %}
 
 {% block cssAddition %}
 <link rel="stylesheet" href="{% static 'css/addCompany.css' %}">
 {% endblock %}
 
-{% block mainTitle %} Ajouter une société addCompany{% endblock %}
+{% block mainTitle %} Ajouter une société {% endblock %}
 
 {% block content %}
 
@@ -68,6 +68,10 @@
           <li>Respectez les règles en bleu pour chaque champs</li>
         </ul>
         {{ form.non_field_errors }}
+        {{ form.name.errors }}
+        {{ form.address.errors }}
+        {{ form.country.errors }}
+        {{ form.contact.errors }}
       </div>
       {% if validEntry %}
         <div class="ui positive message">Nouvelle société ajoutée
@@ -82,5 +86,8 @@
 {% endblock %}
 
 {% block javascript_jq %}
+  <script>
+    console.log("asfsaasdfasfsafasfdasfasfas");
+  </script>
 
 {% endblock %}

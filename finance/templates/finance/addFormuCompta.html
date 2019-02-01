@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} ajout formulaire {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/addFormuCompta.css' %}">
+{% endblock %}
+
+{% block mainTitle %} Ajouter un formumlaire {% endblock %}
+
+{% block content %}
+
+  <div class="ui center aligned grid">
+    <div class="left aligned  column">
+      <form class="ui form" id="formAddFormuCompta" action="{% url "addFormuCompta" company.id %}" method="post">
+        {% csrf_token %}
+        <div class="ui segment">
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.month.label_tag }}
+            </div>
+            <div class="four wide field">
+              {{ form.month }}
+            </div>
+            <div class="four wide field">
+              {{ form.year.label_tag }}
+            </div>
+            <div class="four wide field">
+              {{ form.year }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.ca.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.ca }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.frais_achat.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.frais_achat }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.charges_sociales.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.charges_sociales }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.fg.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.fg }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.autres_frais.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.autres_frais }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.ebitda.label_tag }}
+            </div>
+            <div class="nine wide field">
+              {{ form.ebitda }}
+            </div>
+            <div class="three wide field">
+              <button class="ui tiny blue button" type="button" onclick="calculate();">
+                calculer
+              </button>
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.credits_ct.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.credits_ct }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.credits_lt.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.credits_lt }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.cashflow.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.cashflow }}
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="four wide field">
+              {{ form.investissements.label_tag }}
+            </div>
+            <div class="twelve wide field">
+              {{ form.investissements }}
+            </div>
+          </div>
+          <button type="submit" class="ui fluid blue button">Enregistrer</button>
+        </div>
+      </form>
+      <div class="ui warning message">
+        <ul>
+          <li>Vous serez directement redirigé à la page de la société</li>
+        </ul>
+        {{ form.non_field_errors }}
+        {{ form.company.errors }}
+        {{ form.month.errors }}
+        {{ form.year.errors }}
+        {{ form.ca.errors }}
+        {{ form.frais_achat.errors }}
+        {{ form.charges_sociales.errors }}
+        {{ form.fg.errors }}
+        {{ form.autres_frais.errors }}
+        {{ form.ebitda.errors }}
+        {{ form.credits_ct.errors }}
+        {{ form.credits_lt.errors }}
+        {{ form.cashflow.errors }}
+        {{ form.investissements.errors }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript_jq %}
+  <script>
+
+    function calculate (){
+      const ca = $('#id_ca').val();
+      const fa = $('#id_frais_achat').val();
+      const cs = $('#id_charges_sociales').val();
+      const fg = $('#id_fg').val();
+      const af = $('#id_autres_frais').val();
+      $('#id_ebitda').val(ca-fa-cs-fg-af);
+
+    }
+
+  </script>
+
+{% endblock %}

@@ -12,7 +12,7 @@
 {% block content %}
   {% if user.is_staff %}
   <button class="ui blue medium button" id="btnAddCompany" onclick="location.href='{% url "addCompany" %}';">
-    Ajouter une entreprise
+    Ajouter une société
   </button>
   {% endif %}
   {% for company in companies %}
