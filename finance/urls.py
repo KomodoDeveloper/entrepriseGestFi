@@ -12,5 +12,6 @@ urlpatterns = [
     path('addFormuCompta/<int:id>', views.addFormuCompta, name='addFormuCompta'),
     path('deleteFormuCompta/<int:id>/<int:id2>', views.deleteFormuCompta, name='deleteFormuCompta'),
     path('editFormuCompta/<int:id>/<int:id2>', views.editFormuCompta, name='editFormuCompta'),
+    path('showGraph/<int:id>', views.showGraph, name='showGraph'),
     path('', views.homeRedirection, name='homeRedirection'),
 ]

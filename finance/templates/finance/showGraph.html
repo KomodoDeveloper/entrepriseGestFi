@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} home {% endblock %}
+
+{% block cssAddition %}
+<link rel="stylesheet" href="{% static 'css/showGraph.css' %}">
+{% endblock %}
+
+{% block mainTitle %} {{ company.name }} {% endblock %}
+
+{% block content %}
+<div id="container" style="width:100%; height:600px;"></div>
+{% endblock %}
+
+{% block javascript_jq %}
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script>
+    var xAxisCategories = [];
+    var caData = [];
+    var faData = [];
+    var ebitdaData = [];
+    var csData = [];
+    var fgData = [];
+    var afData = [];
+    var cctData = [];
+    var cltData = [];
+    var cashflowData = [];
+    var investissementsData = [];
+
+    {% for formu in formuComptaForCompany %}
+      tempMonth = "{{ formu.month }}";
+      tempYear = "{{ formu.year }}";
+      temp = tempYear.concat(" ",tempMonth);
+      xAxisCategories.push(temp);
+
+      caTemp = "{{ formu.ca }}".replace(',','.');
+      caData.push(parseFloat(caTemp));
+
+      faTemp = "{{ formu.frais_achat }}".replace(',','.');
+      faData.push(parseFloat(faTemp));
+
+      csTemp = "{{ formu.charges_sociales }}".replace(',','.');
+      csData.push(parseFloat(csTemp));
+
+      fgTemp = "{{ formu.fg }}".replace(',','.');
+      fgData.push(parseFloat(fgTemp));
+
+      afTemp = "{{ formu.autres_frais }}".replace(',','.');
+      afData.push(parseFloat(afTemp));
+
+      ebitdaTemp = "{{ formu.ebitda }}".replace(',','.');
+      ebitdaData.push(parseFloat(ebitdaTemp));
+
+      cctTemp = "{{ formu.credits_ct }}".replace(',','.');
+      cctData.push(parseFloat(cctTemp));
+
+      cltTemp = "{{ formu.credits_lt }}".replace(',','.');
+      cltData.push(parseFloat(cltTemp));
+
+      cashflowTemp = "{{ formu.cashflow }}".replace(',','.');
+      cashflowData.push(parseFloat(cashflowTemp));
+
+      investissementsTemp = "{{ formu.investissements }}".replace(',','.');
+      investissementsData.push(parseFloat(investissementsTemp));
+
+    {% empty %}
+    {% endfor %}
+
+    Highcharts.chart('container', {
+        title: {
+            text: 'Evolutaion financière'
+        },
+        xAxis: {
+            categories: xAxisCategories
+        },
+        yAxis: {
+            title: {
+                text: 'CHF'
+            }
+        },
+
+        series: [{
+            name: 'CA',
+            data: caData,
+            lineWidth: 2
+        }, {
+            name: 'Frais achat',
+            data: faData,
+            lineWidth: 2
+        },{
+            name: 'Charges sociales',
+            data: csData,
+            lineWidth: 2
+        },{
+            name: 'Frais généraux',
+            data: fgData,
+            lineWidth: 2
+        },{
+            name: 'Autres Frais',
+            data: afData,
+            lineWidth: 2
+        },{
+            name: 'EBITDA',
+            data: ebitdaData,
+            lineWidth: 2
+        },{
+            name: 'Crédits CT',
+            data: cctData,
+            lineWidth: 2
+        },{
+            name: 'Crédits LT',
+            data: cltData,
+            lineWidth: 2
+        },{
+            name: 'Cashflow',
+            data: cashflowData,
+            lineWidth: 2
+        },{
+            name: 'Investissements',
+            data: investissementsData,
+            lineWidth: 2
+        }
+        ]
+    });
+
+  </script>
+
+{% endblock %}

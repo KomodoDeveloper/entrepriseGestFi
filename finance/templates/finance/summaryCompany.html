@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/summaryCompany.css' %}">
 {% endblock %}
 
-{% block mainTitle %} {{ company.name }}{% endblock %}
+{% block mainTitle %} {{ company.name }} {% endblock %}
 
 {% block content %}
 
@@ -52,6 +52,9 @@
     Ajouter un formulaire
   </button>
   {% endif %}
+  <button class="ui blue medium button" id="btnSummaryCompanyShowGraph" onclick="location.href='{% url "showGraph" company.id %}';">
+    Voir graphique
+  </button>
   <h3 class="ui header" id="summaryCompanyh3">Liste des formulaires</h3>
 
   <div class="ui grid" id="summaryCompanyGrid2">
@@ -69,12 +72,14 @@
           <div class="ui tiny header" title="Crédit longs termes">CLT : {{ formu.credits_lt }} CHF</div>
           <div class="ui tiny header" title="Cashflow">CF : {{ formu.cashflow }} CHF</div>
           <div class="ui tiny header" title="Investissements">Inv : {{ formu.investissements }} CHF</div>
+          {% if user.is_staff %}
           <button class="ui icon button" onclick="location.href='{% url "deleteFormuCompta" formu.id company.id %}';">
             <i class="trash alternate icon"></i>
           </button>
           <button class="ui icon button" onclick="location.href='{% url "editFormuCompta" formu.id company.id %}';">
             <i class=" edit icon"></i>
           </button>
+          {% endif %}
         </div>
       </div>
     {% empty %}

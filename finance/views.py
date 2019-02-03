@@ -70,3 +70,8 @@ def editFormuCompta(request,id, id2):
         form.save()
         return redirect('summaryCompany', id=company.id)
     return render(request, 'finance/editFormuCompta.html', {'form':form})
+
+def showGraph(request,id):
+    company = get_object_or_404(Company, id=id)
+    formuComptaForCompany = FormuCompta.objects.filter(company__id=company.id)
+    return render(request, 'finance/showGraph.html', locals())
